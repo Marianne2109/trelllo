@@ -1,0 +1,5 @@
+#it tells git what files or folders it need to ignore
+
+__pycache__
+.env
+.venv
