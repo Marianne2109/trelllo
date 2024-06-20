@@ -11,10 +11,11 @@ class Card(db.Model):
     status = db.Column(db.String)
     priority = db.Column(db.String)
     
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False) #foreing key is a feature provided by the database. user_id is the actual column
     
     user = db.relationship('User', back_populates='cards') #Feature of sqlalchemy. We need to match the model name. It connects with the user model. backpopulates is that connects them. User is an object in itself
     
+
     
 class CardSchema(ma.Schema):
     

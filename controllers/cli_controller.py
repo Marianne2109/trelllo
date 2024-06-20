@@ -1,9 +1,17 @@
-from flask import Blueprint
+from datetime import date #first imports for in built libraries
 
-from init import db, bcrypt
+from flask import Blueprint #second import from external libraries
+
+from init import db, bcrypt #third imports from whithin, files we created
 from models.user import User
+from models.card import Card
 
 db_commands = Blueprint("db", __name__)
+
+@db_commands.cli.command("drop")
+def drop_tables():
+    db.drop_all()
+    print("Tables dropped")
 
 @db_commands.cli.command("create")
 def create_tables():
@@ -12,7 +20,7 @@ def create_tables():
     
 @db_commands.cli.command("seed")
 def seed_tables():
-    # create a list of User instances
+    # create a list of User instances inside the list
     users = [
         User(
             email="admin@email.com",
@@ -27,6 +35,35 @@ def seed_tables():
     ]
 
     db.session.add_all(users)
+    
+    cards = [
+        Card(
+            title="Card 1",
+            description="Card 1 desc",
+            date=date.today(),
+            status="To Do",
+            priority="High",
+            user=users[0]
+        ),
+        Card(
+            title="Card 2",
+            description="Card 2 desc",
+            date=date.today(),
+            status="Ongoing",
+            priority="Low",
+            user=users[0]
+        ),
+        Card(
+            title="Card 3",
+            description="Card 3 desc",
+            date=date.today(),
+            status="Done",
+            priority="Medium",
+            user=users[1]
+        ),
+    ]
+
+    db.session.add_all(cards)
 
     db.session.commit()
 
