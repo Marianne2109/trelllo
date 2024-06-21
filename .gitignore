@@ -1,4 +1,4 @@
-#it tells git what files or folders it need to ignore
+#it tells git what files or folders to ignore
 
 __pycache__
 .env
