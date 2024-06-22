@@ -14,6 +14,24 @@ class User(db.Model):
     
     cards = db.relationship('Card', back_populates="user")
     
+    # {
+    #     id: 1,
+    #     title: "Card 1",
+    #     description: "Card 1 desc",
+    #     date: "..",
+    #     status: "..",
+    #     priority: "..",
+    #     user_id: 1,
+    #     user: {
+    #       id: 1,
+    #       name: "User 1",
+    #       email: "user1@email.com",
+    #   }
+    # }
+
+    
+    
+    
 
 #create schema - the schema can be created in a separate folder
 class UserSchema(ma.Schema):
