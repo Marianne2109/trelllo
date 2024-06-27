@@ -2,7 +2,7 @@ from init import db, ma
 from marshmallow import fields #for the FK
 
 class Comment(db.Model): #child of model class
-    __table__ = "comments"
+    __tablename__ = "comments"
     
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String, nullable=False) #nullable false so it doesn't create an empty comment
@@ -12,7 +12,7 @@ class Comment(db.Model): #child of model class
     card_id = db.Column(db.Integer, db.ForeignKey("cards.id"), nullable=False)
     
     user = db.relationship("User", back_populates="comments") #connect to the User module and the comments made by a user
-    card = db.relationship("Card", back_populates="cards")
+    card = db.relationship("Card", back_populates="comments")
     
     
     #create comment schema

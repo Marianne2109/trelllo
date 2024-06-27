@@ -6,6 +6,8 @@ from init import db, ma, bcrypt, jwt
 
 def create_app():
     app = Flask(__name__)
+    
+    app.json.sort_keys = False #we tell flask to follow the order from ma
 
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 
